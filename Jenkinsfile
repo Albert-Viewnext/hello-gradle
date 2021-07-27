@@ -1,16 +1,26 @@
 pipeline {
     agent any
-
+    options {
+        ansiColor('xterm')
+    }
     stages {
         stage('Build') {
             steps {
                 echo 'Compilando..'
-                sh '''docker-compose build
+                sh './gradlew assemble'
+
+                /* sh '''docker-compose build
                 docker image tag hello-gradle:latest hello-gradle:main-1.0.${BUILD_NUMBER}-${GIT_COMMIT}
                 docker-compose up -d'''
                 echo 'Compilado.'
+                */
             }
         }
+
+        stage('Archive') {
+            archiveArtifacts artifacts: '**/*.jar'
+        }
+        
         stage('Test') {
             steps {
                 echo 'Probando..'
