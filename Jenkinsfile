@@ -18,20 +18,23 @@ pipeline {
         }
 
         stage('Archive') {
-            archiveArtifacts artifacts: 'build/libs/*.jar'
+            steps {
+                archiveArtifacts artifacts: 'build/libs/*.jar'
+                echo 'Artefacto archivado.'
+            }
         }
 
         stage('Test') {
             steps {
                 echo 'Probando..'
-                echo 'Probado..'
+                echo 'Probado.'
             }
         }
         stage('Deploy') {
             steps {
                 echo 'Desplegando....'
-                sh 'docker-compose up '
-                echo 'Desplegado....'
+                // sh 'docker-compose up '
+                echo 'Desplegado.'
             }
         }
     }
