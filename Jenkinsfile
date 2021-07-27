@@ -6,7 +6,7 @@ pipeline {
             steps {
                 echo 'Compilando..'
                 sh '''docker-compose build
-                docker image tag app:latest hello-gradle:main-1.0.${BUILD_NUMBER}-${GIT_COMMIT}
+                docker image tag hello-gradle:latest hello-gradle:main-1.0.${BUILD_NUMBER}-${GIT_COMMIT}
                 docker-compose up -d'''
                 echo 'Compilado.'
             }
