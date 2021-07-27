@@ -18,9 +18,9 @@ pipeline {
         }
 
         stage('Archive') {
-            archiveArtifacts artifacts: '**/*.jar'
+            archiveArtifacts artifacts: 'build/libs/*.jar'
         }
-        
+
         stage('Test') {
             steps {
                 echo 'Probando..'
